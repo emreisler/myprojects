@@ -206,24 +206,24 @@ def joint_probability(people, one_gene, two_genes, have_trait):
                 probdict[person] = probdict[person] * PROBS["gene"][0]
             else:
                 probMom = 0
-            probDad = 0
-            if people[person]["mother"] in one_gene:
-                probMom += 0.5
-            elif people[person]["mother"] in two_genes:
-                probMom += 1 - PROBS["mutation"]
-            else:
-                probMom += PROBS["mutation"]
-            
-            if people[person]["father"] in one_gene:
-                probDad += 0.5
-            elif people[person]["father"] in two_genes:
-                probDad += 1 - PROBS["mutation"]
-            else:
-                probDad += PROBS["mutation"]
-                
-            prob = float((1 - probMom)) * float((1 - probDad))
-            
-            probdict[person] *= prob
+                probDad = 0
+                if people[person]["mother"] in one_gene:
+                    probMom += 0.5
+                elif people[person]["mother"] in two_genes:
+                    probMom += 1 - PROBS["mutation"]
+                else:
+                    probMom += PROBS["mutation"]
+
+                if people[person]["father"] in one_gene:
+                    probDad += 0.5
+                elif people[person]["father"] in two_genes:
+                    probDad += 1 - PROBS["mutation"]
+                else:
+                    probDad += PROBS["mutation"]
+
+                prob = float((1 - probMom)) * float((1 - probDad))
+
+                probdict[person] *= prob
        
     
      
