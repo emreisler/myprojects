@@ -25,7 +25,7 @@ for i in range(len(image)):
     if loopi == True:
         for j in range(len(image[0])):
             if loopj == True:
-                if image[i][j][2] == 255 and image[i][j][1] == 255 and image[i][j][0] == 0:
+                if image[i][j][2] > 160 and image[i][j][1] > 160 and image[i][j][0] == 0:
                     if i > startRow + 30 or j > startCol + 30 :
                         startRow = i
                         startCol = j
@@ -34,26 +34,18 @@ for i in range(len(image)):
                         signedArray.append([startRow,endRow,startCol,endCol])
                         print("I am here for")
 
-
 print(signedArray)
-"""
-i = 0
-j = 0
 
-while i < len(image):
-    while j < len(image[0]):
-        if image[i][j][2] == 255 and image[i][j][1] == 255 and image[i][j][0] == 0:
-            startRow = i
-            startCol = j
-            endRow = i + 10
-            endCol = j + 8
-            print("I am here")
-        j += 1
-    i += 1
-"""
-area = image[startRow:endRow, startCol:endCol]
-cv2.imshow("image",image)
-cv2.imshow("area",area)
+for i in range(len(signedArray)):
+    for j in range(len(signedArray[0])):
+        result = image[signedArray[i][0]:signedArray[i][1],signedArray[i][2]:signedArray[i][3]]
+        print(i)
+        cv2.imwrite(f"results/result{i}.jpg",result)
+
+#area = image[startRow:endRow, startCol:endCol]
+
+#cv2.imshow("image",image)
+#cv2.imshow("area",area)
 
 
 #print(area.shape)
